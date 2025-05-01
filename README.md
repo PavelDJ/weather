@@ -16,39 +16,44 @@ https://github.com/PavelDJ/weather
 composer install
 ```
 
-3. Згенеруйте ключ додатку:
+3. Створіть .env файл:
+```bash
+cp .env.example .env
+```
+
+4. Згенеруйте ключ додатку:
 ```bash
 php artisan key:generate
 ```
 
-4. Вкажіть API-ключ погоди у `.env`:
+5. Вкажіть API-ключ погоди у `.env`:
 ```
 WEATHER_API_KEY=ваш_ключ_від_weatherapi.com
 ```
 
-5. Якщо використовується SQLite:
+6. Якщо використовується SQLite:
 ```bash
 mkdir database
 type nul > database/database.sqlite
 ```
 
-6. Очистіть кеш:
+7. Очистіть кеш:
 ```bash
 php artisan config:clear
 php artisan cache:clear
 ```
 
-7. Запустіть сервер:
+8. Запустіть сервер:
 ```bash
 php artisan serve
 ```
 
-8. Відкрийте в браузері:
+9. Відкрийте в браузері:
 ```
 http://localhost:8000/weather
 ```
 
-9. Запуск тестів:
+10. Запуск тестів:
 ```bash
 php artisan test
 ```
