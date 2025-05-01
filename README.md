@@ -6,9 +6,9 @@
 
 ## Встановлення та запуск
 
-1. Клонуйте репозиторій або розпакуйте архів:
+1. Клонуйте репозиторій:
 ```bash
-https://github.com/PavelDJ/weather
+https://github.com/PavelDJ/weather.git
 ```
 
 2. Встановіть залежності:
@@ -31,24 +31,27 @@ php artisan key:generate
 WEATHER_API_KEY=ваш_ключ_від_weatherapi.com
 ```
 
-6. Якщо використовується SQLite:
+6. Створи порожній файл database.sqlite:
 ```bash
-mkdir database
-type nul > database/database.sqlite
+New-Item -ItemType File -Path database\database.sqlite
 ```
 
-7. Очистіть кеш:
+7. Запуск міграцій:
+```bash
+php artisan migrate
+```
+
+8. Очистіть кеш:
 ```bash
 php artisan config:clear
-php artisan cache:clear
 ```
 
-8. Запустіть сервер:
+9. Запустіть сервер:
 ```bash
 php artisan serve
 ```
 
-9. Відкрийте в браузері:
+10. Відкрийте в браузері:
 ```
 http://localhost:8000/weather
 ```
