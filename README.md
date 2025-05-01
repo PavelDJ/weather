@@ -31,7 +31,7 @@ php artisan key:generate
 WEATHER_API_KEY=ваш_ключ_від_weatherapi.com
 ```
 
-6. Створи порожній файл database.sqlite:
+6. Створіть порожній файл database.sqlite:
 ```bash
 New-Item -ItemType File -Path database\database.sqlite
 ```
