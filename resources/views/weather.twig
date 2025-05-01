@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Погода</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: linear-gradient(to right, #74ebd5, #9face6);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding-top: 3rem;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            margin-top: 1rem;
+        }
+
+        form {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"] {
+            padding: 0.6rem;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 0.6rem;
+            font-size: 1rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .error {
+            color: #c0392b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <form method="GET" action="/weather">
+        <label for="city">Введіть місто:</label>
+        <input type="text" name="city" id="city" value="{{ app.request.get('city') ?? 'London' }}">
+        <button type="submit">Показати погоду</button>
+    </form>
+
+    {% if weather is defined %}
+        {% if weather.error is defined %}
+            <p class="error">Помилка: {{ weather.error }}</p>
+        {% else %}
+            <h2>Погода в {{ weather.city }}, {{ weather.country }}</h2>
+            <ul>
+                <li>Температура: {{ weather.temperature }}°C</li>
+                <li>Стан: {{ weather.condition }}</li>
+                <li>Вологість: {{ weather.humidity }}%</li>
+                <li>Вітер: {{ weather.wind_speed }} км/год</li>
+                <li>Оновлено: {{ weather.last_updated }}</li>
+            </ul>
+        {% endif %}
+    {% endif %}
+</div>
+</body>
+</html>
